@@ -61,7 +61,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 echo 'Pushing Docker image to Docker Hub...'
-                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds-new', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     bat "docker login -u %DOCKER_USER% -p %DOCKER_PASS%"
                     bat "docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}"
                     bat "docker push ${DOCKER_IMAGE}:latest"
